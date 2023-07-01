@@ -6,7 +6,7 @@ app = Flask(__name__)
 from config import SECRET_KEY
 
 app.config['SECRET_KEY'] = SECRET_KEY
-db_session.global_init("db/geometry.db")
+db_session.global_init("db/BooksJournal.db")
 
 
 @app.route('/index')
