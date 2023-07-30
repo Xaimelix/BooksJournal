@@ -5,14 +5,15 @@ from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
 
 
-class Genres(SqlAlchemyBase):
-    __tablename__ = 'genres'
+class Books(SqlAlchemyBase):
+    __tablename__ = 'textes'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    id_book = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
+    text = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
 
-    book_id = sqlalchemy.Column(sqlalchemy.Integer,
+    id_chapter = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("books.id"))
 
-    book = orm.relationship('Books')
+    user = orm.relationship('Books')

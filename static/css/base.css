@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.reg {
+    text-decoration: none;
+    color: red
+
+}
+
+.reg:hover {
+    text-decoration: underline;
+}
+
+.log {
+    text-decoration: none;
+
+}
+
+.log:hover {
+    text-decoration: underline;
+}
