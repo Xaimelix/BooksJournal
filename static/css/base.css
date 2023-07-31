@@ -1,24 +1,53 @@
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: end;
+    background-color: gray
 }
 
 .reg {
+    color: white;
     text-decoration: none;
-    color: red
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
 
 }
 
 .reg:hover {
-    text-decoration: underline;
+    color: #7FFFD4;
+    background: black;
+
 }
 
 .log {
+    color: white;
     text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
 
 }
 
 .log:hover {
-    text-decoration: underline;
+    color: #7FFFD4;
+    background: black;
+}
+
+.Auth-login {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+.Auth-login:hover {
+
+    color: #7FFFD4;
+    background: black;
 }

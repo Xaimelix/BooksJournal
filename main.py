@@ -5,7 +5,7 @@ from data import db_session
 from config import SECRET_KEY
 
 from forms.login import *
-from data.Users import User
+from data.Users import Users
 from forms.register import RegisterForm
 from flask_login import login_required, logout_user
 
@@ -22,14 +22,13 @@ db_session.global_init("db/BooksJournal.db")
 @app.route('/')
 def base():
     """Основная старница"""
-    print(db_session.create_session().query(User.login).all())
     return render_template('base.html', current_user=current_user)
 
 
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
-    return db_sess.query(User).get(user_id)
+    return db_sess.query(Users).get(user_id)
 
 
 @app.route('/logout')
@@ -44,7 +43,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        user = db_sess.query(User).filter(User.login == form.login.data).first()
+        user = db_sess.query(Users).filter(Users.login == form.login.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             return redirect("/")
@@ -63,11 +62,11 @@ def register():
                                    form=form,
                                    message="Пароли не совпадают")
         db_sess = db_session.create_session()
-        if db_sess.query(User).filter(User.login == form.login.data).first():
+        if db_sess.query(Users).filter(Users.login == form.login.data).first():
             return render_template('register.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        user = User(login=form.login.data)
+        user = Users(login=form.login.data, email=form.email.data)
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
@@ -75,6 +74,11 @@ def register():
     return render_template('register.html', title='Регистрация', form=form)
 
 
+@app.route('/profile', methods=['POST', 'GET'])
+@login_required
+def profile():
+    return render_template('profile.html', current_user=current_user)
+
+
 if __name__ == '__main__':
     app.run()
-

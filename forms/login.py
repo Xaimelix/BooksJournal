@@ -4,7 +4,7 @@ from wtforms import EmailField, PasswordField, BooleanField, SubmitField, String
 from wtforms.validators import DataRequired
 
 from data import db_session
-from data.Users import User
+from data.Users import Users
 from main import app
 
 

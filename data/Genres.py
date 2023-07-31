@@ -12,7 +12,3 @@ class Genres(SqlAlchemyBase):
                            primary_key=True, autoincrement=True)
     title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
-    book_id = sqlalchemy.Column(sqlalchemy.Integer,
-                                sqlalchemy.ForeignKey("books.id"))
-
-    book = orm.relationship('Books')
